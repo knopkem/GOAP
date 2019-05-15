@@ -68,16 +68,16 @@ namespace SwordGC.AI.Core.Editor.NodeView
 
             // Remove delegate listener if it has previously
             // been assigned.
-            SceneView.onSceneGUIDelegate -= OnSceneGUI;
+            SceneView.duringSceneGui -= OnSceneGUI;
             // Add (or re-add) the delegate.
-            SceneView.onSceneGUIDelegate += OnSceneGUI;
+            SceneView.duringSceneGui += OnSceneGUI;
         }
 
         void OnDestroy()
         {
             // When the window is destroyed, remove the delegate
             // so that it will no longer do any drawing.
-            SceneView.onSceneGUIDelegate -= OnSceneGUI;
+            SceneView.duringSceneGui -= OnSceneGUI;
         }
 
 
@@ -154,7 +154,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             GUIStyle tStyle = EditorStyles.toolbarButton;
             for (int i = 0; i < agents.Length; i++)
             {
-                tStyle.normal.textColor = activeAgent == agents[i] ? Color.blue : Color.black;
+                tStyle.normal.textColor = activeAgent == agents[i] ? Color.white : Color.grey;
                 if (GUI.Button(new Rect(new Vector2((110 * i) + 20, 20), new Vector2(100, 20)), agents[i].transformName, tStyle))
                 {
                     activeAgent = agents[i];
