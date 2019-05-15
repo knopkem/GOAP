@@ -12,8 +12,8 @@ namespace SwordGC.AI.Actions
         public KnockoutPlayerAction(GoapAgent agent, int targetPlayerId) : base(agent)
         {
             effects.Add(Effects.KNOCKED_OUT_PLAYER + targetPlayerId, true);
-            
-            requiredRange = 4f;
+
+            requiredRange = new Vector2(0f, 4f);
             cost = 50;
 
             this.targetPlayerId = targetPlayerId;

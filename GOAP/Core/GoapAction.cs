@@ -92,7 +92,7 @@ namespace SwordGC.AI.Goap
         /// <summary>
         /// The range required
         /// </summary>
-        public float requiredRange { get; protected set; }
+        public Vector2 requiredRange { get; protected set; }
         /// <summary>
         /// The current position of this action
         /// </summary>

@@ -15,7 +15,7 @@ namespace SwordGC.AI.Actions
             effects.Add(Effects.KNOCKED_OUT_PLAYER + targetPlayerId, true);
 
             distanceMultiplier = 0.5f;
-            requiredRange = 4f;
+            requiredRange = new Vector2(0f, 4f);
             cost = 30;
 
             this.targetPlayerId = targetPlayerId;

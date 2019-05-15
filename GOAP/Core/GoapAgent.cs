@@ -99,7 +99,13 @@ namespace SwordGC.AI.Goap {
         /// </summary>
         protected bool ActiveActionInRange
         {
-            get { return Vector3.Distance(transform.position, ActiveAction.target.transform.position) < ActiveAction.requiredRange; }
+            get 
+            {
+                float dist = Vector3.Distance(transform.position, ActiveAction.target.transform.position);
+                Vector2 range = ActiveAction.requiredRange;
+
+                return range.x <= dist && dist <= range.y; 
+            }
         }
 
 

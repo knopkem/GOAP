@@ -13,8 +13,8 @@ namespace SwordGC.AI.Actions
         {
             goal = GoapGoal.Goals.KILL_PLAYER + targetPlayerId;
             preconditions.Add(Effects.KNOCKED_OUT_PLAYER + targetPlayerId, true);
-            
-            requiredRange = 4f;
+
+            requiredRange = new Vector2(0f, 4f);
             cost = 20;
 
             this.targetPlayerId = targetPlayerId;

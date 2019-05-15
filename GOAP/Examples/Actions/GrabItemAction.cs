@@ -13,7 +13,7 @@ namespace SwordGC.AI.Actions
             preconditions.Add(Effects.HAS_OBJECT, false);
             effects.Add(Effects.HAS_OBJECT, true);
             
-            requiredRange = 4f;
+            requiredRange = new Vector2(0f, 4f);
             cost = 20;
 
             targetString = "Throwable";
