@@ -491,17 +491,5 @@ namespace SwordGC.AI.Goap
             yield return new WaitForSeconds(timeout);
             isBlocked = false;
         }
-
-        /// <summary>
-        /// This can be used to store easy constants, included constants are examples
-        /// </summary>
-        public class Effects
-        {
-            public const string KNOCKED_OUT_PLAYER = "IsKnockedOut";
-            public const string HAS_OBJECT = "HasObject";
-            public const string IS_GONER = "IsGoner";
-            public const string SAME_TEAM = "SameTeam";
-            public const string DASHED_AT = "DashedAt";
-        }
     }
 }
