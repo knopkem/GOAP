@@ -141,7 +141,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             activeStyle.normal.background = textures["node_background_active"];
 
             blockedStyle = new GUIStyle(nodeStyle);
-            blockedStyle.normal.background = textures["node_background_disabled"];
+            blockedStyle.normal.background = textures["node_background_blocked"];
         }
 
         /// <summary>
