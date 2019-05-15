@@ -56,7 +56,14 @@ namespace SwordGC.AI.Core.Editor.NodeView
         {
             get
             {
-                string s = goal.cheapestCost.ToString("0.0") + " * " + goal.multiplier + " [" + (goal.cheapestCost * goal.multiplier).ToString("0.0") + "]";
+                string s = string.Format(
+                    "\n" +
+                    "minCost: {0,10:F2}\n" +
+                    "mult:    {1,10:F2}\n" +
+                    "\n" +
+                    "{0:F2} * {1:F2} = {2:F2}",
+                    goal.cheapestCost, goal.multiplier, goal.cheapestCost * goal.multiplier);
+
                 return s;
             }
         }

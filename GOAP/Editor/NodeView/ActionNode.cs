@@ -57,16 +57,23 @@ namespace SwordGC.AI.Core.Editor.NodeView
         {
             get
             {
-                string s = "[" + action.targetName + "]\n";
-                s += action.cost.ToString() + "\n";
-                s += " " + action.preconditionsValid.ToString();
+                string s =  string.Format(
+                    "\n" +
+                    "trgt: \"{0,12}\"\n" +
+                    "cost:  {1,12:2F}\n" +
+                    "\n" +
+                    "---- all: {2,5} ----\n",
+                    action.targetName, action.cost, action.preconditionsValid
+                );
 
                 foreach (KeyValuePair<string, bool> entry in action.preconditions)
                 {
-                    s += "\n" + (dataSet.Equals(entry.Key, entry.Value) ? "<color=green>" : "<color=red>");
-                    s += (entry.Value ? "" : "!") + entry.Key;
-                    s += "</color>";
+                    string colorStr = (dataSet.Equals(entry.Key, entry.Value) ? "green" : "red");
+                    string negateStr = (entry.Value ? "" : "!") ;
+
+                    s += string.Format("    <color={0}>{1}{2}</color>\n", colorStr, negateStr, entry.Key);
                 }
+                s += "------------------";
 
                 return s;
             }

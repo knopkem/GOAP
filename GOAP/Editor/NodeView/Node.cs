@@ -32,6 +32,14 @@ namespace SwordGC.AI.Core.Editor.NodeView
         /// </summary>
         public DataSet dataSet;
 
+
+        public const int BIG_WIDTH = 220;
+        public const int BIG_HEIGHT = 160;
+
+        public const int SMALL_WIDTH = 200;
+        public const int SMALL_HEIGHT = 100;
+        
+
         /// <summary>
         /// Set to true for smaller rendering (for more overview)
         /// </summary>
@@ -39,11 +47,11 @@ namespace SwordGC.AI.Core.Editor.NodeView
         /// <summary>
         /// The size when rendering big rects
         /// </summary>
-        public Rect bigRect = new Rect(210, 60, 200, 100);
+        public Rect bigRect = new Rect(210, 60, BIG_WIDTH, BIG_HEIGHT);
         /// <summary>
         /// The size when rendering small rects
         /// </summary>
-        public Rect smallRect = new Rect(110, 20, 100, 50);
+        public Rect smallRect = new Rect(110, 20, SMALL_WIDTH, SMALL_HEIGHT);
         /// <summary>
         /// Gets the correct size rect
         /// </summary>
