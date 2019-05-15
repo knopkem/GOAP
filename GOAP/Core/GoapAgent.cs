@@ -111,7 +111,6 @@ namespace SwordGC.AI.Goap {
             addActions = new List<GoapAction>();
 
             dataSet = new DataSet();
-            dataSet.SetData(GoapAction.Effects.HAS_OBJECT, false);
         }
         
         public virtual void Start() {
