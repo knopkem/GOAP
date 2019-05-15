@@ -299,6 +299,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             }
             
             drawnRect = tRect;
+
             
             if (useSmallRect)
                 GUI.Box(tRect, "<color=" + textColor + ">" + title + "</color>", GetStyle(active));

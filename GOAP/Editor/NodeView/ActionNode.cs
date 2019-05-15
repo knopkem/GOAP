@@ -57,23 +57,48 @@ namespace SwordGC.AI.Core.Editor.NodeView
         {
             get
             {
-                string s =  string.Format(
-                    "\n" +
-                    "trgt: \"{0,12}\"\n" +
-                    "cost:  {1,12:2F}\n" +
-                    "\n" +
-                    "---- all: {2,5} ----\n",
-                    action.targetName, action.cost, action.preconditionsValid
-                );
+
+                string effectsStr = "---- effs ----------\n";
+
+                foreach (KeyValuePair<string, bool> entry in action.effects)
+                {
+                    string colorStr = "white";
+                    string negateStr = (entry.Value ? "" : "!");
+                    effectsStr += string.Format("    <color={0}>{1}{2}</color>\n", colorStr, negateStr, entry.Key);
+                }
+
+                //effectsStr += "------------------";
+
+
+                string presStr = string.Format("---- pres: {0,5} ---\n", action.preconditionsValid);
 
                 foreach (KeyValuePair<string, bool> entry in action.preconditions)
                 {
                     string colorStr = (dataSet.Equals(entry.Key, entry.Value) ? "green" : "red");
-                    string negateStr = (entry.Value ? "" : "!") ;
+                    string negateStr = (entry.Value ? "" : "!");
 
-                    s += string.Format("    <color={0}>{1}{2}</color>\n", colorStr, negateStr, entry.Key);
+                    presStr += string.Format("    <color={0}>{1}{2}</color>\n", colorStr, negateStr, entry.Key);
                 }
-                s += "------------------";
+                //presStr += "------------------";
+
+
+                string s =  string.Format(
+                    "\n" +
+                    "trgt:  {2,12}\n" +
+                    "cost:  {3,12:F2}\n" +
+                    "range: {4,11:F2}\n" +
+                    "\n" +
+                    "{0}" +
+                    "\n" +
+                    "{1}",
+
+
+                    effectsStr,
+                    presStr,
+                    action.targetName, 
+                    action.cost,
+                    action.requiredRange
+                );
 
                 return s;
             }
