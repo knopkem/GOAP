@@ -75,7 +75,7 @@ namespace SwordGC.AI.Goap
         /// <summary>
         /// The maximum amount of runtime for this action before it get's blocked for X seconds
         /// </summary>
-        protected float maxRunTime = 3f;
+        protected float maxRunTime = Mathf.Infinity;
         /// <summary>
         /// The current running time of this action
         /// </summary>
