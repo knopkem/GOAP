@@ -19,6 +19,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace SwordGC.AI.Goap
 {
@@ -375,6 +376,15 @@ namespace SwordGC.AI.Goap
             {
                 position = target.transform.position;
             }
+        }
+        /// <summary>
+        /// Returns the best position to move to for this action
+        /// </summary>
+        /// <param name="navMeshAgent"></param>
+        /// <returns></returns>
+        public virtual Vector3 FindMovePosition(NavMeshAgent navMeshAgent)
+        {
+            return target.transform.position;
         }
 
         /// <summary>
