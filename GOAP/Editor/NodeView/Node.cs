@@ -34,7 +34,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
 
 
         public const int BIG_WIDTH = 220;
-        public const int BIG_HEIGHT = 160;
+        public const int BIG_HEIGHT = 200;
 
         public const int SMALL_WIDTH = 200;
         public const int SMALL_HEIGHT = 100;
