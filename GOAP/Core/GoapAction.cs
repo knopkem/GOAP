@@ -46,7 +46,7 @@ namespace SwordGC.AI.Goap
         /// <summary>
         /// The cost of this action
         /// </summary>
-        public float cost { get; protected set; }
+        public virtual float cost { get; protected set; }
         /// <summary>
         /// The cached cheapest cost
         /// </summary>
@@ -398,10 +398,12 @@ namespace SwordGC.AI.Goap
                 //Debug.Assert(targetToNavMeshPos.magnitude < this.requiredRange.y, "Cannot reach target");
                 if (targetToNavMeshPos.magnitude < this.requiredRange.y)
                 {
+                    outPos = navMeshHit.position;
+                }
+                else
+                {
                     return false; // can't reach the target
                 }
-
-                outPos = navMeshHit.position;
             }
 
             return true;
