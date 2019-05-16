@@ -44,6 +44,8 @@ namespace SwordGC.AI.Goap
 
             EditorGUILayout.EnumPopup("Current thread", agent.runningThread);
 
+            base.OnInspectorGUI();
+
             foreach (GoapAction action in agent.possibleActions)
             {
                 DrawAvailableAction(action);

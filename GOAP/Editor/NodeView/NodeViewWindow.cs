@@ -20,6 +20,7 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 using SwordGC.AI.Goap;
+using System;
 
 namespace SwordGC.AI.Core.Editor.NodeView
 {
@@ -91,10 +92,16 @@ namespace SwordGC.AI.Core.Editor.NodeView
             DrawDataSet();
             DrawNodes();
             DrawAgents();
+            DrawActiveAgentInfo();
 
             ProcessEvents(Event.current);
 
             if (GUI.changed) Repaint();
+        }
+
+        private void DrawActiveAgentInfo()
+        {
+            activeAgent.EditorDrawAgentInfo();
         }
 
         void OnSceneGUI(SceneView sceneView)
@@ -152,15 +159,18 @@ namespace SwordGC.AI.Core.Editor.NodeView
             GoapAgent[] agents = FindObjectsOfType<GoapAgent>();
 
             GUIStyle tStyle = EditorStyles.toolbarButton;
+
             for (int i = 0; i < agents.Length; i++)
             {
                 tStyle.normal.textColor = activeAgent == agents[i] ? Color.white : Color.grey;
+
                 if (GUI.Button(new Rect(new Vector2((110 * i) + 20, 20), new Vector2(100, 20)), agents[i].transformName, tStyle))
                 {
                     activeAgent = agents[i];
                     LoadNodes();
                 }
             }
+
             tStyle.normal.textColor = Color.black;
         }
         
@@ -169,11 +179,11 @@ namespace SwordGC.AI.Core.Editor.NodeView
         /// </summary>
         private void DrawDataSet ()
         {
-            if (activeAgent == null || activeAgent.dataSet == null) return;
+            if (activeAgent == null || activeAgent.factSet == null) return;
 
             string s = "";
 
-            foreach (KeyValuePair<string, bool> entry in activeAgent.dataSet.data)
+            foreach (KeyValuePair<string, bool> entry in activeAgent.factSet.data)
             {
                 s += "\n" + (entry.Value ? "<color=green>" : "<color=red>");
                 s += (entry.Value ? "" : "!") + entry.Key;
@@ -181,7 +191,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             }
 
 
-            GUI.Box(new Rect(offset.x, 50f + offset.y, 200, activeAgent.dataSet.data.Count * 17), s, nodeStyle);
+            GUI.Box(new Rect(offset.x, 50f + offset.y, 200, activeAgent.factSet.data.Count * 17), s, nodeStyle);
         }
 
         /// <summary>
@@ -290,7 +300,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
 
             foreach (GoapGoal goal in activeAgent.goals.Values)
             {
-                GoalNode node = new GoalNode(goal, 0, prev, activeAgent.dataSet, nodeStyle, activeStyle, blockedStyle);
+                GoalNode node = new GoalNode(goal, 0, prev, activeAgent.factSet, nodeStyle, activeStyle, blockedStyle);
                 nodes.Add(node);
                 prev = node;
             }
