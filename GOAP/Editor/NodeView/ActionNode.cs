@@ -74,7 +74,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
 
                 foreach (KeyValuePair<string, bool> entry in action.preconditions)
                 {
-                    string colorStr = (dataSet.Equals(entry.Key, entry.Value) ? "green" : "red");
+                    string colorStr = (factSet.CheckFact(entry.Key, entry.Value) ? "green" : "red");
                     string negateStr = (entry.Value ? "" : "!");
 
                     presStr += string.Format("    <color={0}>{1}{2}</color>\n", colorStr, negateStr, entry.Key);
@@ -104,7 +104,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             }
         }
 
-        public ActionNode(Node parent, int depth, Node neighbour, GoapAction action, DataSet dataSet, GUIStyle nodeStyle, GUIStyle activeStyle, GUIStyle blockedStyle) : base(parent, depth, neighbour, dataSet, nodeStyle, activeStyle, blockedStyle)
+        public ActionNode(Node parent, int depth, Node neighbour, GoapAction action, FactSet dataSet, GUIStyle nodeStyle, GUIStyle activeStyle, GUIStyle blockedStyle) : base(parent, depth, neighbour, dataSet, nodeStyle, activeStyle, blockedStyle)
         {
             this.action = action;
         }

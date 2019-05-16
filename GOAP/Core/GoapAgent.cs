@@ -72,7 +72,7 @@ namespace SwordGC.AI.Goap {
         /// <summary>
         /// Reference to the current dataset
         /// </summary>
-        public DataSet dataSet { get; protected set; }
+        public FactSet factSet { get; protected set; }
         /// <summary>
         /// Set to true when the node view editor needs updating
         /// </summary>
@@ -116,7 +116,7 @@ namespace SwordGC.AI.Goap {
             removeActions = new List<GoapAction>();
             addActions = new List<GoapAction>();
 
-            dataSet = new DataSet();
+            factSet = new FactSet();
         }
         
         public virtual void Start() {
@@ -141,7 +141,7 @@ namespace SwordGC.AI.Goap {
         {
             if (interveneAction != null)
             {
-                interveneAction.Update(dataSet);
+                interveneAction.Update(factSet);
 
                 if (interveneAction.preconditionsValid)
                 {
@@ -361,7 +361,7 @@ namespace SwordGC.AI.Goap {
         {
             foreach (GoapGoal goal in goals.Values)
             {
-                goal.Update(dataSet);
+                goal.Update(factSet);
             }
         }
 
@@ -453,6 +453,10 @@ namespace SwordGC.AI.Goap {
         protected virtual void Move (GoapAction nextAction)
         {
 
+        }
+
+        public virtual void EditorDrawAgentInfo()
+        {
         }
     }
 }

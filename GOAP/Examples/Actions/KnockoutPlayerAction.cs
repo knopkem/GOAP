@@ -20,7 +20,7 @@ namespace SwordGC.AI.Actions
             this.targetString = "Player_" + targetPlayerId;
         }
 
-        protected override bool CheckProceduralPreconditions(DataSet data)
+        protected override bool CheckProceduralPreconditions(FactSet data)
         {
             // Check all procedural preconditions
             // Example:

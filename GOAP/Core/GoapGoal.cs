@@ -96,7 +96,7 @@ namespace SwordGC.AI.Goap
         /// Implement to update the multiplier of this goal
         /// </summary>
         /// <param name="data"></param>
-        public virtual void UpdateMultiplier (DataSet data)
+        public virtual void UpdateMultiplier (FactSet data)
         {
 
         }
@@ -105,7 +105,7 @@ namespace SwordGC.AI.Goap
         /// Updates data on this goal and all childs
         /// </summary>
         /// <param name="data"></param>
-        public void Update (DataSet data)
+        public void Update (FactSet data)
         {
             UpdateMultiplier(data);
 

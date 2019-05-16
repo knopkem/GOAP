@@ -10,7 +10,7 @@ public class KillPlayerGoal : GoapGoal
 
     }
 
-    public override void UpdateMultiplier(DataSet data)
+    public override void UpdateMultiplier(FactSet data)
     {
         // fancy function that lowers the multiplier if another player kills this AI often
     }

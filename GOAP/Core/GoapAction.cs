@@ -97,7 +97,8 @@ namespace SwordGC.AI.Goap
         /// <summary>
         /// The current position of this action
         /// </summary>
-        public Vector3 position { get; protected set; }
+        public virtual Vector3 position { get; protected set; }
+
         /// <summary>
         /// The target of this object
         /// </summary>
@@ -377,14 +378,33 @@ namespace SwordGC.AI.Goap
                 position = target.transform.position;
             }
         }
+
+     
+
         /// <summary>
         /// Returns the best position to move to for this action
         /// </summary>
         /// <param name="navMeshAgent"></param>
         /// <returns></returns>
-        public virtual Vector3 FindMovePosition(NavMeshAgent navMeshAgent)
+        public virtual bool FindMovePositionOnNavMesh(NavMeshAgent navMeshAgent, out Vector3 outPos)
         {
-            return target.transform.position;
+
+            outPos = position;
+
+            NavMeshHit navMeshHit;
+            if (NavMesh.SamplePosition(position, out navMeshHit, requiredRange.y, navMeshAgent.areaMask))
+            {
+                Vector3 targetToNavMeshPos = (navMeshHit.position - target.transform.position);
+                //Debug.Assert(targetToNavMeshPos.magnitude < this.requiredRange.y, "Cannot reach target");
+                if (targetToNavMeshPos.magnitude < this.requiredRange.y)
+                {
+                    return false; // can't reach the target
+                }
+
+                outPos = navMeshHit.position;
+            }
+
+            return true;
         }
 
         /// <summary>
@@ -392,11 +412,11 @@ namespace SwordGC.AI.Goap
         /// </summary>
         /// <param name="data">The dataset it needs to be compared to</param>
         /// <returns>True if all preconditions are true</returns>
-        protected bool CheckPreconditions (DataSet data)
+        protected bool CheckPreconditions (FactSet data)
         {
             foreach (string key in preconditions.Keys)
             {
-                if (!data.Equals(key, preconditions[key])) return false;
+                if (!data.CheckFact(key, preconditions[key])) return false;
             }
             return true;
         }
@@ -406,7 +426,7 @@ namespace SwordGC.AI.Goap
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        protected virtual bool CheckProceduralPreconditions(DataSet data)
+        protected virtual bool CheckProceduralPreconditions(FactSet data)
         {
             return target != null && !isBlocked;
         }
@@ -415,7 +435,7 @@ namespace SwordGC.AI.Goap
         /// Updates this action, caches all the data
         /// </summary>
         /// <param name="data"></param>
-        public virtual void Update(DataSet data)
+        public virtual void Update(FactSet data)
         {
             UpdateTarget();
             UpdatePosition();

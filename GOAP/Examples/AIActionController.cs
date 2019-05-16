@@ -23,7 +23,7 @@ public class AIActionController : GoapAgent {
         // create Actions
         for (int i = 1; i < testPlayerCount; i++)
         {
-            dataSet.SetData(Effects.KNOCKED_OUT_PLAYER + i, false);
+            factSet.SetFact(Effects.KNOCKED_OUT_PLAYER + i, false);
 
             possibleActions.Add(new KillAction(this, i));
             possibleActions.Add(new KnockoutPlayerAction(this, i));

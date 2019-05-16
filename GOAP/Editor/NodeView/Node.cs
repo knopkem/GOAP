@@ -30,7 +30,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
         /// <summary>
         /// Reference to the current dataset
         /// </summary>
-        public DataSet dataSet;
+        public FactSet factSet;
 
 
         public const int BIG_WIDTH = 220;
@@ -220,7 +220,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             return style;
         }
 
-        public Node(Node parent, int depth, Node neighbour, DataSet dataSet, GUIStyle nodeStyle, GUIStyle activeStyle, GUIStyle blockedStyle)
+        public Node(Node parent, int depth, Node neighbour, FactSet dataSet, GUIStyle nodeStyle, GUIStyle activeStyle, GUIStyle blockedStyle)
         {
             cachedRect = new Rect((sizeRect.size .y + 10), sizeRect.position.y * depth, sizeRect.size.x, sizeRect.size.y);
 
@@ -230,7 +230,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             this.depth = depth;
             this.neighbour = neighbour;
             this.parent = parent;
-            this.dataSet = dataSet;
+            this.factSet = dataSet;
         }
 
         /// <summary>
@@ -321,7 +321,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             Node prev = null;
             foreach (GoapAction action in actions)
             {
-                Node child = new ActionNode(this, depth, prev, action, dataSet, style, activeStyle, blockedStyle).AddChilds(action.childs, depth);
+                Node child = new ActionNode(this, depth, prev, action, factSet, style, activeStyle, blockedStyle).AddChilds(action.childs, depth);
                 prev = child;
                 childs.Add(child);
             }

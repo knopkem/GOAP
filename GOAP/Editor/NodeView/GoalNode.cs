@@ -68,7 +68,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
             }
         }
 
-        public GoalNode(GoapGoal goal, int depth, Node neighbour, DataSet dataSet, GUIStyle nodeStyle, GUIStyle activeStyle, GUIStyle blockedStyle) : base(null, depth, neighbour, dataSet, nodeStyle, activeStyle, blockedStyle)
+        public GoalNode(GoapGoal goal, int depth, Node neighbour, FactSet dataSet, GUIStyle nodeStyle, GUIStyle activeStyle, GUIStyle blockedStyle) : base(null, depth, neighbour, dataSet, nodeStyle, activeStyle, blockedStyle)
         {
             this.goal = goal;
 

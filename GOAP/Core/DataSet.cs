@@ -25,7 +25,7 @@ namespace SwordGC.AI.Goap
     /// <summary>
     /// Object that holds all the information that the GOAP might need
     /// </summary>
-    public class DataSet
+    public class FactSet
     {
         /// <summary>
         /// Holds al the data
@@ -35,7 +35,7 @@ namespace SwordGC.AI.Goap
         /// <summary>
         /// Creates a new default dataset
         /// </summary>
-        public DataSet ()
+        public FactSet ()
         {
             data = new Dictionary<string, bool>();
         }
@@ -44,7 +44,7 @@ namespace SwordGC.AI.Goap
         /// Creates a new copy of a dataset
         /// </summary>
         /// <param name="copy"></param>
-        public DataSet (DataSet copy)
+        public FactSet (FactSet copy)
         {
             data = copy.data;
         }
@@ -54,7 +54,7 @@ namespace SwordGC.AI.Goap
         /// </summary>
         /// <param name="key">The key</param>
         /// <param name="value">The (new) value</param>
-        public void SetData (string key, bool value)
+        public void SetFact (string key, bool value)
         {
             if (data.ContainsKey(key))
             {
@@ -72,7 +72,7 @@ namespace SwordGC.AI.Goap
         /// <param name="key">The key of the data</param>
         /// <param name="value">The comparison value</param>
         /// <returns>Are the input and data value the same</returns>
-        public bool Equals (string key, bool value)
+        public bool CheckFact (string key, bool value)
         {
             if (data.ContainsKey(key))
             {
