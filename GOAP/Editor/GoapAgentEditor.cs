@@ -19,6 +19,7 @@
 using UnityEditor;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace SwordGC.AI.Goap
 {
@@ -46,9 +47,18 @@ namespace SwordGC.AI.Goap
 
             base.OnInspectorGUI();
 
+
+            List<GoapAction> activeActions = agent.activeActions;
+
             foreach (GoapAction action in agent.possibleActions)
             {
-                DrawAvailableAction(action);
+
+            }
+
+
+            foreach (GoapAction action in agent.possibleActions)
+            {
+                //DrawAvailableAction(action);
             }
 
             foreach (GoapGoal goal in agent.goals.Values)
@@ -70,39 +80,39 @@ namespace SwordGC.AI.Goap
         private void DrawGoal (GoapGoal goal)
         {
             EditorGUILayout.LabelField(goal.GetType().Name);
-            EditorGUILayout.BeginVertical("Box");
+            //EditorGUILayout.BeginVertical("Box");
             foreach (GoapAction child in goal.childs)
             {
                 DrawAction(child);
             }
-            EditorGUILayout.EndVertical();
+            //EditorGUILayout.EndVertical();
         }
 
         /// <summary>
         /// Draws the given action
         /// </summary>
         /// <param name="action"></param>
-        private void DrawAction (GoapAction action)
+        private void DrawAction (GoapAction action, bool drawChildren = true)
         {
             EditorGUILayout.BeginHorizontal();
             EditorGUILayout.LabelField(action.GetType().Name, EditorStyles.boldLabel);
-            if (GUILayout.Button("delete"))
-            {
-                agent.RemoveAction(action);
-            }
+            //if (GUILayout.Button("delete"))
+            //{
+            //    agent.RemoveAction(action);
+            //}
             EditorGUILayout.EndHorizontal();
 
             EditorGUILayout.Toggle("Preconditions Valid", action.preconditionsValid);
             EditorGUILayout.Toggle("Procedural Valid", action.proceduralConditionsValid);
 
-            if (action.childs.Count > 0)
+            if (drawChildren && action.childs.Count > 0)
             {
-                EditorGUILayout.BeginVertical("Box");
+                //EditorGUILayout.BeginVertical("Box");
                 foreach (GoapAction child in action.childs)
                 {
                     DrawAction(child);
                 }
-                EditorGUILayout.EndVertical();
+                //EditorGUILayout.EndVertical();
             }
         }
 
