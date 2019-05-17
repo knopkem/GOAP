@@ -54,7 +54,7 @@ namespace SwordGC.AI.Core.Editor.NodeView
         /// </summary>
         private Vector2 offset;
 
-        [MenuItem("Window/GOAP Visualizer")]
+        [UnityEditor.MenuItem("Window/GOAP Visualizer")]
         private static void OpenWindow()
         {
             NodeViewEditor window = GetWindow<NodeViewEditor>();
